@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8ACE5FDD-41FE-4E90-9914-AC09F0A61471}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2A346F1E-BF73-4F5E-9596-32782C627771}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.tfignore = .tfignore
+		src\lazarus\NuGet.config = src\lazarus\NuGet.config
+		Points to Zorah.txt = Points to Zorah.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lazarus", "src\lazarus\lazarus.csproj", "{86E0097E-582B-469C-B917-AD9562B8FBD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "src\DAL\DAL.csproj", "{9C794B52-D152-461D-BF83-23E1D2059498}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86E0097E-582B-469C-B917-AD9562B8FBD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E0097E-582B-469C-B917-AD9562B8FBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E0097E-582B-469C-B917-AD9562B8FBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E0097E-582B-469C-B917-AD9562B8FBD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C794B52-D152-461D-BF83-23E1D2059498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C794B52-D152-461D-BF83-23E1D2059498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C794B52-D152-461D-BF83-23E1D2059498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C794B52-D152-461D-BF83-23E1D2059498}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86E0097E-582B-469C-B917-AD9562B8FBD7} = {8ACE5FDD-41FE-4E90-9914-AC09F0A61471}
+		{9C794B52-D152-461D-BF83-23E1D2059498} = {8ACE5FDD-41FE-4E90-9914-AC09F0A61471}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://adentum.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = src\\DAL\\DAL.csproj
+		SccProjectTopLevelParentUniqueName1 = lazarus.sln
+		SccProjectName1 = src/DAL
+		SccLocalPath1 = src\\DAL
+		SccProjectUniqueName2 = src\\lazarus\\lazarus.csproj
+		SccProjectTopLevelParentUniqueName2 = lazarus.sln
+		SccProjectName2 = src/lazarus
+		SccLocalPath2 = src\\lazarus
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+﻿<p>Hello {doctor},</p>
+<p>You have a new appointment with the patient "{patient}" on <strong>{appointmentDate}</strong>.</p>
+<p>The request was on {requestDate}.</p>
+<p><br /></p>
+<p>Best regards,</p>
+<p>Lazarous OPD</p>

@@ -1,0 +1,47 @@
+<div class="container">
+    <header class="pageHeader">
+        <h3><i class="fa fa-tachometer fa-lg page-caption" aria-hidden="true"></i>{{'pageHeader.Dashboard' | translate}}</h3>
+    </header>
+
+    <div [@fadeInOut]>
+        <div *ngIf="!configurations.showDashboardMedicalHistory && !configurations.showDashboardNotifications && !configurations.showDashboardAppointments" class="well well-lg">
+            <h4 class="text-muted text-center">
+                You have no widgets displayed. Goto <a routerLink="/settings" fragment="preferences"><i class="fa fa-sliders"></i>{{'settings.menu.Preferences' | translate}}</a>
+                to configure available widgets
+            </h4>
+        </div>
+
+        <div *ngIf="configurations.showDashboardMedicalHistory" class="row bottom-space well well-sm">
+            <h4 class="text-muted inline-block">{{'pageHeader.Medical History' | translate}}</h4>
+            <button type="button" class="close pull-right statistics-close-btn" aria-label="Close" title="Close" (click)="configurations.showDashboardMedicalHistory = false">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="clearfix"></div>
+            <statistics-demo></statistics-demo>
+        </div>
+
+        <div *ngIf="configurations.showDashboardNotifications" class="row bottom-space">
+            <button type="button" class="close pull-right todo-close-btn" aria-label="Close" title="Close" (click)="configurations.showDashboardNotifications = false">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="clearfix"></div>
+            <notifications-viewer></notifications-viewer>
+        </div>
+
+        <div *ngIf="configurations.showDashboardAppointments" class="row bottom-space">
+            <button type="button" class="close pull-right todo-close-btn" aria-label="Close" title="Close" (click)="configurations.showDashboardAppointments = false">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="clearfix"></div>
+            <appointments-management [miniView]="true" [itemsPerPage]="10"></appointments-management>
+        </div>
+
+        <div *ngIf="configurations.showDashboardBanner" class="row no-bottom-space">
+            <button type="button" class="close pull-right banner-close-btn" aria-label="Close" title="Close" (click)="configurations.showDashboardBanner = false">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="clearfix"></div>
+            <banner-demo></banner-demo>
+        </div>
+    </div>
+</div>

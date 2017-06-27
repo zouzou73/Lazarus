@@ -1,0 +1,135 @@
+﻿<div>
+    <form *ngIf="formResetToggle" class="form-horizontal" name="availabilityEditorForm" #f="ngForm" novalidate
+          (ngSubmit)="f.form.valid ? save() :
+
+          (canCreateAvailabilityForOthers && !provider.valid && showErrorAlert('Provider is required', 'Please select a provider'));
+          (!startDate.valid && showErrorAlert('Start date is required', 'Please select the starting date of the time slot'));
+          (!endDate.valid && showErrorAlert('End date is required', 'Please select the ending date of the time slot'));">
+
+        <div class="form-group has-feedback">
+            <label class="control-label col-xs-2" for="providerName">{{'availability.Provider' | translate}}:</label>
+            <div *ngIf="!canCreateAvailabilityForOthers" class="col-xs-10">
+                <input id="providerName" name="providerName" readonly="readonly" type="text" class="form-control is-required-status" [value]="generator.providerName" />
+            </div>
+            <div *ngIf="canCreateAvailabilityForOthers" class="col-xs-10" [ngClass]="{'has-success': f.submitted && provider.valid, 'has-error' : f.submitted && !provider.valid}">
+                <select id="provider" name="provider" #provider="ngModel" bootstrapSelect required class="selectpicker form-control is-required-status" title="Select a Provider"
+                        data-live-search="true" [(ngModel)]="generator.providerId">
+                    <option *ngFor="let provider of providers" value="{{provider.id}}">{{provider.friendlyName}}</option>
+                </select>
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': provider.valid, 'glyphicon-remove' : !provider.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !provider.valid" class="errorMessage">
+               {{'availability.ProviderV' | translate}}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-2">
+                <div class="row dateRow pull-right">
+                    <div class="col-xs-12 dateColumn caption">
+                        <label class="control-label" for="startDate">{{'availability.StartDate' | translate}}:</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="row dateRow">
+                    <div class="col-xs-8 dateColumn has-feedback">
+                        <div class="input-group date">
+                            <input type="text" id="startDate" name="startDate" #startDate="ngModel" required class="form-control is-required-status" placeholder="Select the start date"
+                                   bootstrapDatepicker #startDatePicker="bootstrap-datepicker" [options]="datepickerOptions" [(ngModel)]="startDateOnly" />
+                            <span class="input-group-addon" (click)="startDatePicker.show()"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ':startDate.valid, 'glyphicon-remove' : !startDate.valid}"></span>
+                    </div>
+                    <div class="col-xs-4 dateColumn">
+                        <timepicker id="startTime" name="startTime" [(ngModel)]="startTimeOnly"></timepicker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span *ngIf="showValidationErrors && f.submitted && !startDate.valid" class="errorMessage">
+                        {{'availability.StartDateV' | translate}}    
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-2">
+                <div class="row dateRow pull-right">
+                    <div class="col-xs-12 dateColumn caption">
+                        <label class="control-label" for="endDate">{{'availability.EndDate' | translate}}:</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="row dateRow">
+                    <div class="col-xs-8 dateColumn has-feedback">
+                        <div class="input-group date">
+                            <input type="text" id="endDate" name="endDate" #endDate="ngModel" required class="form-control is-required-status" placeholder="Select the end date"
+                                   bootstrapDatepicker #endDatePicker="bootstrap-datepicker" [options]="datepickerOptions" [(ngModel)]="endDateOnly" />
+                            <span class="input-group-addon" (click)="endDatePicker.show()"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ':endDate.valid, 'glyphicon-remove' : !endDate.valid}"></span>
+                    </div>
+                    <div class="col-xs-4 dateColumn">
+                        <timepicker id="endTime" name="endTime" [(ngModel)]="endTimeOnly"></timepicker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span *ngIf="showValidationErrors && f.submitted && !endDate.valid" class="errorMessage">
+                           {{'availability.EndDateV' | translate}} 
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="isNewAvailability && !isBulkDelete" class="form-group">
+            <div class="col-xs-2">
+                <div class="row dateRow pull-right">
+                    <div class="col-xs-12 dateColumn caption">
+                        <label class="control-label" for="interval">{{'availability.Interval' | translate}}:</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <timepicker id="interval" name="interval" [showMeridian]="false" [(ngModel)]="interval"></timepicker>
+                <div class="interval-hint">{{'availability.Hour' | translate}} : {{'availability.Minutes' | translate}}  </div>
+            </div>
+        </div>
+
+        <div *ngIf="!isNewAvailability && !isBulkDelete" class="form-group">
+            <label class="control-label col-xs-2" for="isReserved"></label>
+            <div class="col-xs-10">
+                <div class="checkbox">
+                    <label>
+                        <input name="isReserved" type="checkbox" [(ngModel)]="availabilityEdit.isReserved">
+                       {{'availability.IsReserved' | translate}} 
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <hr class="last-separator-hr" />
+            </div>
+        </div>
+
+        <div class="form-group actionBtn-form-group">
+            <div class="col-xs-12">
+                <div class="pull-right">
+                    <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> Cancel</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="isSaving">
+                        <i *ngIf="!isSaving"></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i>
+                        {{isBulkDelete ? (isSaving ? 'Deleting...' : 'Delete') : (isSaving ? (isNewAvailability ? 'Generating...' : 'Saving...') : (isNewAvailability ? 'Generate' : 'Save'))}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>

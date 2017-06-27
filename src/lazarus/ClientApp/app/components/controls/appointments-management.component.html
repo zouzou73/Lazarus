@@ -1,0 +1,83 @@
+﻿<div>
+    <div class="row control-box">
+        <div class="col-sm-5">
+            <div class="form-group search-box">
+                <search-box (searchChange)="onSearchChanged($event)" placeholder="Search for appointment..."></search-box>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="navbar action-box">
+                <ul class="nav navbar-nav">
+                    <li [class.active]="calendarView" class="toolbaritem">
+                        <a href="javascript:;" (click)="calendarView = true"><i class="fa fa-calendar-o"></i>{{'appointement.cal' | translate}}</a>
+                    </li>
+                    <li [class.active]="!calendarView" class="toolbaritem">
+                        <a href="javascript:;" (click)="calendarView = false"><i class="fa fa-list"></i>{{'appointement.List' | translate}}</a>
+                    </li>
+                    <li *ngIf="!miniView" class="toolbaritem">
+                        <a href="javascript:;" (click)="newAppointment()"><i class="fa fa-plus"></i>{{'appointement.Book' | translate}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="calendarView" #scheduler="full-calendar" fullCalendar [options]="calendarOptions"></div>
+
+    <ngx-datatable *ngIf="!calendarView" class="material colored-header sm table-hover"
+                   [loadingIndicator]="loadingIndicator"
+                   [rows]="rows"
+                   [rowHeight]="35"
+                   [headerHeight]="35"
+                   [footerHeight]="35"
+                   [limit]="itemsPerPage"
+                   [columns]="columns"
+                   [scrollbarV]="verticalScrollbar"
+                   [columnMode]="'force'">
+    </ngx-datatable>
+
+    <template #indexTemplate let-value="value">
+        <strong>{{value}}</strong>
+    </template>
+
+    <template #contentTemplate let-row="row" let-value="value">
+        <span [class.cancelledStatus]="row.status == appointmentStatus.Cancelled" attr.title="{{value}}">
+            {{value}}
+        </span>
+    </template>
+
+    <template #dateTemplate let-row="row" let-value="value">
+        <span [class.cancelledStatus]="row.status == appointmentStatus.Cancelled" attr.title="{{getPrintedDate(value)}}">
+            {{getPrintedDate(value)}}
+        </span>
+    </template>
+
+    <template #appointmentStatusTemplate let-row="row" let-value="value">
+        <span [class.isActiveStatus]="row.isActive" attr.title="{{appointmentStatus[value]}}">
+            {{appointmentStatus[value]}}
+        </span>
+    </template>
+
+    <template #actionsTemplate let-row="row">
+        <a class="btn btn-link btn-xs" href="javascript:;" tooltip="Edit appointment" container="body" (click)="editAppointment(row)" [class.disabled]="!row.isActive"><i class="fa fa-pencil-square-o"></i></a>
+        <a class="btn btn-link btn-xs" href="javascript:;" tooltip="Cancel appointment" container="body" (click)="cancelAppointment(row)" [class.disabled]="!row.isActive"><i class="fa fa-times"></i></a>
+        <a class="btn btn-link btn-xs" href="javascript:;" tooltip="Delete appointment" container="body" (click)="deleteAppointment(row)"><i class="fa fa-trash-o"></i></a>
+    </template>
+
+
+    <div *ngIf="!miniView" class="modal fade" bsModal #editorModal="bs-modal" (onHidden)="onEditorModalHidden()" [config]="{backdrop: 'static'}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left"><i class="fa fa-calendar-plus-o"></i>{{sourceAppointment ? 'Edit Appointment' : 'New Appointment'}}</h4>
+                    <button type="button" class="close pull-right" title="Close" (click)="editorModal.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <appointment-editor #appointmentEditor></appointment-editor>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

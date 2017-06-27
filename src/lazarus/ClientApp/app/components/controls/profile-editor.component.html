@@ -1,0 +1,19 @@
+﻿<div>
+    <tabset #editorTabs>
+        <tab *ngIf="isUserInfoEnabled" heading='User Account'>
+            <div class="control-container">
+                <user-info #userInfo [isGeneralEditor]="true"></user-info>
+            </div>
+        </tab>
+        <tab *ngIf="isProviderEditorEnabled" heading='Provider Profile'>
+            <div class="control-container">
+                <provider-editor #providerEditor [isGeneralEditor]="true"></provider-editor>
+            </div>
+        </tab>
+        <tab *ngIf="isPatientEditorEnabled" heading='Patient Profile'>
+            <div class="control-container">
+                <patient-editor #patientEditor [isGeneralEditor]="true"></patient-editor>
+            </div>
+        </tab>
+    </tabset>
+</div>

@@ -1,0 +1,263 @@
+﻿{
+  "app": {
+    "Welcome": "أهلا بك"
+  },
+  "mainMenu": {
+    "Appointments": "مواعيد",
+    "Consultations": "استشارة",
+    "Patients": "مرضى",
+    "Providers": "أطباء",
+    "History": "سجل",
+    "About": "حول",
+    "Logout": "خروج"
+  },
+  "pageHeader": {
+    "NewConsultation": "إستشارة جديدة",
+    "Dashboard": "لوحة القيادة",
+    "Appointments": "مواعيد",
+    "Consultations": "استشارة",
+    "Patients": "مرضى",
+    "Medical History": "تاريخ طبى",
+    "Settings": "إعدادات"
+  },
+  "Consultation": {
+    "NewConsultation": "إستشارة جديدة",
+    "Consultations": "استشارة"
+    
+  },
+  "settings": {
+    "menu": {
+      "Profile": "الملف الشخصي",
+      "Preferences": "التفضيلات",
+      "Departments": "الإدارات",
+      "Users": "المستخدمين",
+      "Roles": "الأدوار"
+    },
+
+    "header": {
+      "UserProfile": "تعريف المستخدم",
+      "UserPreferences": "تفضيلات المستخدم",
+      "UserDepartments": "أقسام المستخدم",
+      "UsersManagements": "إداراة المستخدم",
+      "RolesManagement": "إدارة الأدوار"
+
+    }
+  },
+
+  "users": {
+    "management": {
+      "NewUser": "مستخدم جديد",
+      "EditUser": "تحرير العضو",
+      "Edit": "تصحيح",
+      "Delete": "حذف",
+      "Title": "عنوان",
+      "UserName": "اسم المستخدم",
+      "FullName": "الاسم الكامل",
+      "Email": "البريد الإلكتروني",
+      "Roles": "الأدوار",
+      "PhoneNumber": "رقم الهاتف"
+    },
+    "info": {
+      "job": "المسمى الوظيفي: ",
+      "UserName": "اسم المستخدم:",
+      "Password": "كلمة المرور:",
+      "Email": "البريد الإلكتروني:",
+      "ChangePassword": "غير كلمة المرور",
+      "CurrentPassword": "كلمة المرور الحالية:",
+      "NewPassword": "كلمة مرور جديدة:",
+      "ConfirmPassword": "تأكيد كلمة المرور:",
+      "FullName": "الإسم الكامل",
+      "Phone": "الهاتف:",
+      "Close": "إغلاق",
+      "Edit": "تصحيح",
+      "Cancel": "إلغاء",
+      "Roles": "الأدوار",
+      "UserNameV": "مطلوب اسم المستخدم (الحد الأدنى من 2 والحد الأقصى 200 حرفا)",
+      "PasswordV": "مطلوب كلمة المرور الحالية",
+      "PasswordVNew": " مطلوب كلمة مرور جديدة (الحد الأدنى من 6 أحرف) مطلوب كلمة مرور جديدة (الحد الأدنى من 6 أحرف)",
+      "PasswordVName": "كلمة المرور مطلوبة عند تغيير اسم المستخدم",
+      "PasswordC": "مطلوب كلمة مرور التأكيد",
+      "PasswordNC": "لا تتطابق كلمة المرور الجديدة وكلمة مرور التأكيد",
+      "EmailV": " عنوان البريد الإلكتروني مطلوب (بحد أقصى 200 حرف)",
+      "EmailNV": "البريد الإلكتروني المحدد غير صالح",
+      "RoleC": " مطلوب دور",
+      "Unblock": "رفع الحظر",
+      "Enabled": "تمكين",
+      "Save": "حفظ",
+      "Saving": "جار الحفظ..."
+
+    },
+    "preferences": {
+      "ReloadPreferences": "إعادة تحميل تفضيلات:",
+      "Language": "اللغة",
+      "English": "الإنقليزية",
+      "French": "الفرنسية",
+      "Arabic": "العربية",
+      "HomePage": "الصفحة الرئيسية:",
+      "Dashboard": "لوحة القيادة",
+      "Appointments": "المواعيد",
+      "Consultations": "تشاور",
+      "Patients": "مرضى",
+      "Providers": "أطباء",
+      "History": "تاريخ",
+      "About": "حول",
+      "Settings": "إعدادات",
+      "Theme": "موضوع",
+      "DefaultColor": "<span class='default-theme-option'>الافتراضي</span>",
+      "RedColor": "<span class='red-theme-option'>أحمر</span>",
+      "OrangeColor": "<span class='orange-theme-option'>برتقالي</span>",
+      "GreenColor": "<span class='green-theme-option'>أخضر</span>",
+      "GrayColor": "<span class='gray-theme-option'>رمادي</span>",
+      "BlackColor": "<span class='black-theme-option'>أسود</span>",
+      "MedicalHistory": "تاريخ طبي",
+      "Notifications": "إعلامات:",
+      "UpcomingAppointments": "المواعيد القادمة",
+      "Resetdefault": "إرجاع إلى الأصل",
+      "Setasdefault": "تحديث حسب الأصل",
+      "def": "تحميل التفضيلات الافتراضية (يتم تجاهل التغييرات المحلية)",
+      "defp": "حدد الصفحة الافتراضية للانتقال إلى تسجيل الدخول",
+      "defl": "حدد اللغة المفضلة لحسابك",
+      "defc": "حدد مظهر اللون الافتراضي لحسابك",
+      "defh": "عرض السجل الطبي للمستخدم الحالي على لوحة التحكم",
+      "defn": "عرض الإشعارات الجديدة على لوحة التحكم",
+      "defa": "عرض المواعيد القادمة على لوحة القيادة"
+
+    }
+  },
+  "roles": {
+    "NewRole": "دور جديد ",
+    "Name": "اسم:",
+    "Description": "وصف:",
+    "Users": "المستخدمين",
+    "Edit": "تصحيح",
+    "Delete": "حذف",
+    "Details": "تفاصيل",
+    "valid": "مطلوب اسم الدور (لا تقل عن 2 وبحد أقصى 200 حرف)",
+    "sela": "حدد جميع",
+    "sel": "حدد لا شيء",
+    "Close": "إغلاق",
+    "Cancel": "إلغاء",
+    "name": "اسم",
+    "description": "وصف",
+    "users": "المستخدمين"
+
+
+
+
+  },
+  "Consultation": {
+    "Consultations": "مشاورات"
+  },
+  "appointement": {
+    "cal": "عرض التقويم",
+    "List": "عرض القائمة",
+    "Book": "أخذ موعد",
+    "Appointment": "موعد",
+    "Appointments": "مواعيد",
+    "NewAppointment": "موعد جديد",
+    "EditAppointment": "تحرير تعيين",
+    "Availability": "توفر",
+    "MyAppointments": "مواعيدي الخاصة",
+    "MyAvailability": "وقتي المتاح",
+    "Symptoms": "الأعراض",
+    "Start": "بداية",
+    "End": "النهاية",
+    "Contact": "اتصل",
+    "Status": "الحالة",
+    "rejected": "تم رفض",
+    "Name": "اسم:",
+    "patv": "مطلوب المريض",
+    "pats": "الأعراض:",
+    "sym": "مطلوب الأعراض",
+    "prefdoc": "طبيب مفضل:",
+    "prefdate": "التاريخ المفضل:",
+    "prefdateval": "مطلوب الوقت المفضل للتعيين",
+    "cr": "إجعلها حرجة",
+    "cancelopt": "إلغاء الموعد",
+    "Cancel": "إلغاء",
+    "Close": "إغلاق",
+    "try": "حاول ثانية",
+    "booksuccess": "تم إنذار بنجاح",
+    "canceloptm": "تم إلغاء",
+    "optconfirm": "يحتاج تأكيد الحجز",
+    "slotv": "مطلوب تأكيد الحجز لقبول الموعد الجديد والوقت أنت أعطيت للتعيين. على خلاف الرجاء تغيير مواعيد المفضلة وحاول مرة أخرى",
+    "slot": "لا توجد خانات مواعيد متاحة للفترة التي حددتها. يرجى تغيير مواعيد المفضلة وحاول مرة أخرى"
+
+  },
+  "availability": {
+    "GenerateAvailability": "توليد التوفر",
+    "BulkDelete": "حذف الجزء الأكبر ",
+    "Provider": "طبيب",
+    "ProviderV": " مطلوب طبيب",
+    "StartDate": "تاريخ البدء",
+    "StartDateV": "تاريخ البدء مطلوب",
+    "EndDate": "تاريخ النهاية",
+    "EndDateV": "مطلوب تاريخ انتهاء",
+    "Interval": "الفاصل",
+    "IsReserved": "محجوز",
+    "Hour": "وقت",
+    "Minutes": "دقائق",
+    "Start": "بداية",
+    "End": "نهاية",
+    "Duration": "مدة",
+    "Booked": "حجز",
+    "Reserved": "محجوز"
+
+  },
+  "departments": {
+    "NewDep": "الإدارة الجديدة",
+    "Name": "اسم:",
+    "Description": "وصف:",
+    "name": "اسم",
+    "description": "وصف",
+    "users": "المستخدمين",
+    "Edit": "تصحيح",
+    "Delete": "حذف",
+    "valn": "مطلوب اسم القسم",
+    "Cancel": "إلغاء"
+  },
+  "patients": {
+    "Name": "اسم",
+    "Email": "البريد الإلكتروني",
+    "Phone": "الهاتف",
+    "Blood": "فصيلة الدم",
+    "Gender": "جنس",
+    "Age": "عمر",
+    "City": "مدينة",
+    "NewPatient": "مريض جديد",
+    "BloodGroup": "فصيلة الدم:",
+    "gender": "جنس:",
+    "genderv": "مطلوب الجنس",
+    "DateBirth": "تاريخ الميلاد:",
+    "DateBirthv": "تاريخ الميلاد مطلوبة",
+    "city": "مدينة:",
+    "Address": "عنوان:",
+    "Close": "إغلاق",
+    "Cancel": "إلغاء",
+    "Edit": "تصحيح"
+
+  },
+  "providers": {
+    "NewProvider": "طبيب جديد",
+    "serviceId": "معرف الخدمة",
+    "ServiceId": "معرف الخدمة:",
+    "ServiceIdv": "معرف الخدمة مطلوب:",
+    "Name": "اسم",
+    "Department": " قسم",
+    "Deaprtmentv": "القسم مطلوب",
+    "Email": "البريد الإلكتروني",
+    "Phone": "الهاتف",
+    "WorkPhone": "هاتف عمل",
+    "workPhone": "هاتف عمل:",
+    "Gender": "جنس",
+    "Genderv": "مطلوب الجنس",
+    "DateBirth": "تاريخ الميلاد:",
+    "DateBirthv": "تاريخ الميلاد مطلوبة",
+    "City": "مدينة",
+    "Address": "عنوان:",
+    "Close": "إغلاق",
+    "Cancel": "إلغاء",
+    "Edit": "تصحيح"
+
+  }
+}

@@ -1,0 +1,167 @@
+﻿<div>
+    <form *ngIf="formResetToggle" class="form-horizontal" name="providerProfileForm" #f="ngForm" novalidate
+          (ngSubmit)="f.form.valid ? save() :
+
+          (!serviceId.valid && showErrorAlert('Service Id is required', 'Please enter the service ID of the Provider'));
+
+          (!department.valid && showErrorAlert('Department is required', 'Please select a department'));
+
+          (!gender.valid && showErrorAlert('Gender is required', 'Please select a gender'));">
+
+        <div class="form-group has-feedback">
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="serviceId">{{'providers.ServiceId' | translate}}</label>
+            <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <p class="form-control-static">{{provider.serviceId}}</p>
+            </div>
+            <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly" [ngClass]="{'has-success': f.submitted && serviceId.valid, 'has-error' : f.submitted && !serviceId.valid}">
+                <input autofocus type="text" id="serviceId" name="serviceId" placeholder="Enter service Id"
+                       class="form-control" [(ngModel)]="providerEdit.serviceId" #serviceId="ngModel" required />
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': serviceId.valid, 'glyphicon-remove' : !serviceId.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !serviceId.valid" class="errorMessage">
+                    {{'providers.ServiceIdv' | translate}}
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr [class.separator-hr]="!isEditMode" [class.edit-separator-hr]="isEditMode" />
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="department">{{'providers.Department' | translate}}:</label>
+            <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <p class="form-control-static" title="{{getDepartmentById(provider.departmentId)?.description}}">{{provider.departmentName}}</p>
+            </div>
+            <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly" [ngClass]="{'has-success': f.submitted && department.valid, 'has-error' : f.submitted && !department.valid}">
+                <select id="department" name="department" #department="ngModel" bootstrapSelect required class="selectpicker form-control is-required-status" title="Select a Department"
+                        data-live-search="true" [(ngModel)]="providerEdit.departmentId">
+                    <option *ngFor="let department of allDepartments" attr.data-content="<span title='{{department.description}}'>{{department.name}}</span>" attr.value="{{department.id}}">{{department.name}}</option>
+                </select>
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': department.valid, 'glyphicon-remove' : !department.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !department.valid" class="errorMessage">
+                    {{'providers.Departmentv' | translate}}
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr [class.separator-hr]="!isEditMode" [class.edit-separator-hr]="isEditMode" />
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="gender">{{'providers.Gender' | translate}}:</label>
+            <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <p class="form-control-static">{{genderEnum[provider.gender]}}</p>
+            </div>
+            <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly" [ngClass]="{'has-success': f.submitted && gender.valid, 'has-error' : f.submitted && !gender.valid}">
+                <select id="gender" name="gender" #gender="ngModel" bootstrapSelect required class="selectpicker form-control is-required-status" title="Select a Gender" [(ngModel)]="providerEdit.gender">
+                    <option data-icon="fa fa-male" [value]="genderEnum.Male">Male</option>
+                    <option data-icon="fa fa-female" [value]="genderEnum.Female">Female</option>
+                </select>
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': gender.valid, 'glyphicon-remove' : !gender.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !gender.valid" class="errorMessage">
+                   {{'providers.Genderv' | translate}} 
+                </span>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr [class.separator-hr]="!isEditMode" [class.edit-separator-hr]="isEditMode" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="dateOfBirth">{{'providers.DateBirth' | translate}}:</label>
+            <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <p class="form-control-static">{{getPrintedDate(provider.dateOfBirth)}}</p>
+            </div>
+            <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <div class="input-group date">
+                    <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" placeholder="Enter date of birth"
+                           bootstrapDatepicker #datePicker="bootstrap-datepicker" [options]="datepickerOptions" [(ngModel)]="providerEdit.dateOfBirth" />
+                    <span class="input-group-addon" (click)="datePicker.show()"><i class="fa fa-calendar"></i></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr [class.separator-hr]="!isEditMode" [class.edit-separator-hr]="isEditMode" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="workPhoneNumber">{{'providers.workPhone' | translate}}</label>
+            <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <p class="form-control-static">{{provider.workPhoneNumber}}</p>
+            </div>
+            <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <input type="text" id="workPhoneNumber" name="workPhoneNumber" placeholder="Enter work phone number" class="form-control" [(ngModel)]="providerEdit.workPhoneNumber" />
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr [class.separator-hr]="!isEditMode" [class.edit-separator-hr]="isEditMode" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="city">{{'providers.City' | translate}}:</label>
+            <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <p class="form-control-static">{{provider.city}}</p>
+            </div>
+            <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <input type="text" id="city" name="city" placeholder="Enter city" class="form-control" [(ngModel)]="providerEdit.city" />
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr [class.separator-hr]="!isEditMode" [class.edit-separator-hr]="isEditMode" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="address">{{'providers.Address' | translate}}</label>
+            <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <p class="form-control-static">{{provider.address}}</p>
+            </div>
+            <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
+                <textarea type="text" id="address" name="address" rows="4" placeholder="Enter address" class="form-control is-required-status" [(ngModel)]="providerEdit.address"></textarea>
+            </div>
+        </div>
+
+
+
+        <div *ngIf="!isViewOnly" class="row">
+            <div class="col-md-12">
+                <hr [class.last-separator-hr]="!isEditMode" [class.edit-last-separator-hr]="isEditMode" />
+            </div>
+        </div>
+
+        <div *ngIf="!isViewOnly" class="form-group">
+            <div class="col-sm-12">
+                <div class="pull-right">
+                    <button *ngIf="!isEditMode && isGeneralEditor" type="button" (click)="close()" class="btn btn-default"><i class='fa fa-close'></i>{{'providers.Close' | translate}}</button>
+                    <button *ngIf="!isEditMode && !isGeneralEditor" type="button" (click)="edit()" class="btn btn-default"><i class='fa fa-edit'></i>{{'providers.Edit' | translate}}</button>
+                    <button *ngIf="isEditMode" type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i>{{'providers.Cancel' | translate}}</button>
+                    <button *ngIf="isEditMode" type="submit" class="btn btn-primary" [disabled]="isSaving">
+                        <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? 'Saving...' : 'Save'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>

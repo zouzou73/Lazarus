@@ -1,0 +1,58 @@
+﻿<div class="container-fluid" *ngIf="formResetToggle">
+    <div *ngIf="currentAppointment.id > 0" class="entry-group row">
+        <label class="control-label col-md-2" for="patientName">Appointment:</label>
+        <div class="col-md-10">
+            <input id="appointment" name="appointment" readonly="readonly" type="text" class="form-control is-required-status" [value]="currentAppointment.narration" />
+        </div>
+    </div>
+
+    <div class="entry-group row">
+        <label class="control-label col-md-2" for="providerName">Provider:</label>
+        <div class="col-md-10">
+            <input id="providerName" name="providerName" readonly="readonly" type="text" class="form-control is-required-status" [value]="currentProviderName" />
+        </div>
+    </div>
+
+    <div *ngIf="!isViewingSelf" class="entry-group row">
+        <label class="control-label col-md-2" for="patientName">Patient</label>
+        <div class="col-md-10">
+            <input id="patientName" name="patientName" readonly="readonly" type="text" class="form-control is-required-status" [value]="currentAppointment.patientName" />
+        </div>
+    </div>
+
+    <div class="entry-group row">
+        <label class="control-label col-md-2" for="symptoms">Symptoms:</label>
+        <div class="col-md-10">
+            <textarea type="text" id="symptoms" name="symptoms" readonly="readonly" rows="4" placeholder="-" class="form-control is-required-status" [(ngModel)]="currentAppointment.symptoms"></textarea>
+        </div>
+    </div>
+
+    <div class="entry-group row">
+        <label class="control-label col-md-2" for="prognosis">Prognosis:</label>
+        <div class="col-md-10">
+            <textarea type="text" id="prognosis" name="prognosis" readonly="readonly" rows="4" placeholder="-" class="form-control is-required-status" [(ngModel)]="currentAppointment.prognosis"></textarea>
+        </div>
+    </div>
+
+    <div class="entry-group row">
+        <label class="control-label col-md-2" for="prescription">Prescriptions:</label>
+        <div class="col-md-10">
+            <textarea type="text" id="prescription" name="prescription" readonly="readonly" rows="4" placeholder="-" class="form-control is-required-status" [(ngModel)]="currentAppointment.prescriptions"></textarea>
+        </div>
+    </div>
+
+    <div class="entry-group row">
+        <label class="control-label col-md-2" for="comments">Comments:</label>
+        <div class="col-md-10">
+            <textarea type="text" id="comments" name="comments" rows="4" readonly="readonly" placeholder="-" class="form-control is-required-status" [(ngModel)]="currentAppointment.comments"></textarea>
+        </div>
+    </div>
+
+    <div class="entry-group row actionBtn-entry-group">
+        <div class="col-sm-12">
+            <div class="pull-right">
+                <button type="button" (click)="close()" class="btn btn-default">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

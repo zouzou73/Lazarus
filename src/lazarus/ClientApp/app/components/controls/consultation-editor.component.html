@@ -1,0 +1,98 @@
+﻿<div>
+    <form *ngIf="formResetToggle" class="form-horizontal" name="consultationEditorForm" #f="ngForm" novalidate
+          (ngSubmit)="f.form.valid ? save() :
+
+          (patient && !patient.valid && showErrorAlert('Patient is required', 'Please select a patient'));
+
+          (!symptoms.valid && showErrorAlert('Symptoms is required', 'Please enter the patient\'s symptoms'));
+
+          (!prognosis.valid && showErrorAlert('Prognosis is required', 'Please enter the prognosis'));">
+
+        <div *ngIf="appointments.length || currentAppointment.id > 0" class="form-group">
+            <label class="control-label col-md-2" for="patientName">Appointment:</label>
+            <div *ngIf="!isNewConsultation && currentAppointmentId != 'none'" class="col-md-10">
+                <input id="appointment" name="appointment" readonly="readonly" type="text" class="form-control is-required-status" [value]="currentAppointment.narration" />
+            </div>
+            <div *ngIf="appointments.length" class="col-md-10">
+                <select id="appointment" name="appointment" bootstrapSelect class="selectpicker form-control is-required-status" title="Select the appointment"
+                        data-live-search="true" [(ngModel)]="currentAppointmentId">
+                    <option *ngIf="isNewConsultation" value="none">None</option>
+                    <option *ngFor="let appointment of appointments" value="{{appointment.id}}">{{appointment.narration}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="providerName">Provider:</label>
+            <div class="col-md-10">
+                <input id="providerName" name="providerName" readonly="readonly" type="text" class="form-control is-required-status" [value]="currentProviderName" />
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="control-label col-md-2" for="patientName">Patient</label>
+            <div *ngIf="currentAppointmentId > 0" class="col-md-10">
+                <input id="patientName" name="patientName" readonly="readonly" type="text" class="form-control is-required-status" [value]="currentAppointment.patientName" />
+            </div>
+            <div *ngIf="!(currentAppointmentId > 0)" class="col-md-10" [ngClass]="{'has-success': f.submitted && patient.valid, 'has-error' : f.submitted && !patient.valid}">
+                <select id="patient" name="patient" #patient="ngModel" bootstrapSelect required class="selectpicker form-control is-required-status" title="Select a Patient"
+                        data-live-search="true" [(ngModel)]="currentAppointment.patientId">
+                    <option *ngFor="let patient of patients" value="{{patient.id}}">{{patient.friendlyName}}</option>
+                </select>
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': patient.valid, 'glyphicon-remove' : !patient.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !patient.valid" class="errorMessage">
+                    Patient is required
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="control-label col-md-2" for="symptoms">Symptoms:</label>
+            <div class="col-md-10" [ngClass]="{'has-success': f.submitted && symptoms.valid, 'has-error' : f.submitted && !symptoms.valid}">
+                <textarea type="text" autofocus id="symptoms" name="symptoms" #symptoms="ngModel" rows="4" required placeholder="Enter the patient's symptoms" class="form-control" [(ngModel)]="currentAppointment.symptoms"></textarea>
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ':symptoms.valid, 'glyphicon-remove' : !symptoms.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !symptoms.valid" class="errorMessage">
+                    Symptoms is required
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="control-label col-md-2" for="prognosis">Prognosis:</label>
+            <div class="col-md-10" [ngClass]="{'has-success': f.submitted && prognosis.valid, 'has-error' : f.submitted && !prognosis.valid}">
+                <textarea type="text" id="prognosis" name="prognosis" #prognosis="ngModel" rows="4" required placeholder="Enter the prognosis" class="form-control" [(ngModel)]="currentAppointment.prognosis"></textarea>
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ':prognosis.valid, 'glyphicon-remove' : !prognosis.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !prognosis.valid" class="errorMessage">
+                    Prognosis is required
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="prescription">Prescriptions:</label>
+            <div class="col-md-10">
+                <textarea type="text" id="prescription" name="prescription" rows="4" placeholder="Enter the prescriptions" class="form-control is-required-status" [(ngModel)]="currentAppointment.prescriptions"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="comments">Comments:</label>
+            <div class="col-md-10">
+                <textarea type="text" id="comments" name="comments" rows="4" placeholder="Enter your comments" class="form-control is-required-status" [(ngModel)]="currentAppointment.comments"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group actionBtn-form-group">
+            <div class="col-sm-12">
+                <div class="pull-right">
+                    <button *ngIf="!viewOnlyMode" type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> Cancel</button>
+                    <button *ngIf="viewOnlyMode" type="button" (click)="close()" class="btn btn-default">Close</button>
+                    <button *ngIf="!viewOnlyMode" type="submit" class="btn btn-primary" [disabled]="isSaving">
+                        <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? 'Saving...' : 'Save'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>

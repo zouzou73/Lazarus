@@ -1,0 +1,69 @@
+﻿<div>
+    <div class="row control-box">
+        <div class="col-sm-8">
+            <div class="form-group search-box">
+                <search-box (searchChange)="onSearchChanged($event)" placeholder="Search for consultation..."></search-box>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="navbar action-box">
+                <ul class="nav navbar-nav navbar-right">
+                    <li *ngIf="canCreateConsultations" class="toolbaritem">
+                        <a href="javascript:;" (click)="newConsultation()">
+                            <i class="fa fa-plus-circle"></i> {{'pageHeader.NewConsultation' | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <ngx-datatable class="material colored-header sm table table-striped table-hover"
+                   [loadingIndicator]="loadingIndicator"
+                   [rows]="rows"
+                   [rowHeight]="35"
+                   [headerHeight]="35"
+                   [footerHeight]="35"
+                   [columns]="columns"
+                   [scrollbarV]="true"
+                   [columnMode]="'force'">
+    </ngx-datatable>
+
+    <template #indexTemplate let-value="value">
+        <strong>{{value}}</strong>
+    </template>
+
+    <template #contentTemplate let-row="row" let-value="value">
+        <span attr.title="{{value}}">
+            {{value}}
+        </span>
+    </template>
+
+    <template #dateTemplate let-row="row" let-value="value">
+        <span attr.title="{{getPrintedDate(value)}}">
+            {{getPrintedDate(value)}}
+        </span>
+    </template>
+
+    <template #actionsTemplate let-row="row">
+        <a *ngIf="canCreateConsultations" class="btn btn-link btn-xs" href="javascript:;" tooltip="Edit consultation" container="body" (click)="editConsultation(row)"><i class="fa fa-pencil-square-o"></i></a>
+        <a *ngIf="!canCreateConsultations" class="btn btn-link btn-xs" href="javascript:;" tooltip="View consultation" container="body" (click)="viewConsultation(row)"><i class="fa fa-eye"></i></a>
+        <a *ngIf="canCreateConsultations" class="btn btn-link btn-xs" href="javascript:;" tooltip="Delete consultation" container="body" (click)="deleteConsultation(row)"><i class="fa fa-trash-o"></i></a>
+    </template>
+
+    <div class="modal fade" bsModal #editorModal="bs-modal" (onHidden)="onEditorModalHidden()" [config]="{backdrop: 'static'}" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left"><i class="fa fa-hospital-o"></i> {{sourceConsultation ? 'Edit Consultation' : 'New Consultation'}}</h4>
+                    <button type="button" class="close pull-right" title="Close" (click)="editorModal.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <consultation-editor #consultationEditor></consultation-editor>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

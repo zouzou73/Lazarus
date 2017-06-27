@@ -1,0 +1,161 @@
+
+.pageHeader {
+    margin-bottom: 30px;
+}
+
+.container-fluid {
+    padding: 60px 50px;
+}
+
+.bg-grey {
+    background-color: #f6f6f6;
+  
+}
+
+.logo {
+    font-size: 200px;
+}
+.banner {
+    background: url('../../assets/images/bg-banner.jpg') no-repeat fixed;
+    background-size: cover;
+    min-height: 450px;
+    position: relative;
+}
+.banner-text {
+    color: #fff;
+}
+
+    .banner-text h1 {
+        font-family: 'Candal', sans-serif;
+        font-size: 35px;
+        text-transform: uppercase;
+        padding-bottom: 15px;
+    }
+@media screen and (max-width: 768px) {
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+    }
+   
+
+}
+/***************************************
+footer
+***************************************/
+#footer {
+    background-color: #325C6A;
+}
+
+.ftr-tle {
+    height: 50px;
+}
+
+.info-sec {
+    color: #fff;
+}
+
+.quick-info li i {
+    font-size: 8px;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: left;
+}
+
+.social-icon li {
+    float: left;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.bglight-blue {
+    background-color: #3498DB;
+}
+
+.bgred {
+    background-color: #E74C3C;
+}
+
+.bgdark-blue {
+    background-color: #2C3E50;
+}
+
+.bglight-blue {
+    background-color: #3498DB;
+}
+
+.top-footer {
+    padding: 40px 0px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-line {
+    padding: 30px 0px;
+    color: #fff;
+}
+
+    .footer-line a {
+        color: #0CB8B6;
+    }
+
+.quick-info li a {
+    color: #fff;
+}
+
+.site-link, .site-link:hover, .site-link:focus {
+    color: #0cb8b6;
+    text-transform: none;
+}
+
+@media (min-width: 551px) and (max-width: 980px) {
+}
+
+@media (min-width: 220px) and (max-width: 551px) {
+    .testi-info {
+        margin-bottom: 20px;
+    }
+
+    .marb20 {
+        margin-top: 30px;
+    }
+
+    h2 {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+    .section-title {
+        margin-bottom: 30px;
+    }
+
+    .medi-info {
+        border: 0px;
+        border-bottom: 1px solid #fff;
+    }
+
+    .service-info {
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+
+    .caption h3 {
+        font-size: 14px;
+    }
+
+    .caption p {
+        font-size: 12px;
+        padding-bottom: 5px;
+    }
+
+    .caption ul li a i {
+        font-size: 14px;
+    }
+
+    .banner-text h1 {
+        font-size: 24px;
+    }
+}
+

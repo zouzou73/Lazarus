@@ -1,0 +1,22 @@
+﻿
+.last-separator-hr {
+    margin: 0 0 10px 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.actionBtn-form-group {
+    margin-bottom: 0;
+}
+
+a.disabled {
+    color: gray;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.status-display {
+    margin: 0 15px;
+}

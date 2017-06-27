@@ -1,0 +1,8 @@
+
+Consider talking around these points in your report
+---------------------------------------------------
+* Permission based authorization is used instead of role based. Permission based authorization is flexible, and has advantages over role based authorization.
+But its more involving to implement. Google on the advantages and include in your report
+
+* Using Angular2 gives the application a more desktop app experience. Rather than the regular browser click, and wait for the page to reload experience.
+This is a single page application and every communication with the server is via a restful API. Show them the responsiveness of the application

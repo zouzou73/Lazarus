@@ -1,0 +1,165 @@
+﻿<div *ngIf="editorState == appointmentEditorState.Editor">
+    <form *ngIf="formResetToggle" class="form-horizontal" name="appointmentEditorForm" #f="ngForm" novalidate
+          (ngSubmit)="f.form.valid ? save() :
+
+          (canCreateAppointmentsForOthers && !patient.valid && showErrorAlert('Patient is required', 'Please select a patient'));
+
+          (!symptoms.valid && showErrorAlert('Symptoms is required', 'Please enter a short description of your symptoms'));
+
+          (!preferredDate.valid && showErrorAlert('Preferred date is required', 'Please select your preferred date for the appointment'));">
+
+        <div class="form-group has-feedback">
+            <label class="control-label col-md-3" for="patientName">{{'appointement.Name' | translate}}</label>
+            <div *ngIf="!canCreateAppointmentsForOthers" class="col-md-9">
+                <input id="patientName" name="patientName" readonly="readonly" type="text" class="form-control is-required-status" [value]="appointmentEdit.patientName" />
+            </div>
+            <div *ngIf="canCreateAppointmentsForOthers" class="col-md-9" [ngClass]="{'has-success': f.submitted && patient.valid, 'has-error' : f.submitted && !patient.valid}">
+                <select id="patient" name="patient" #patient="ngModel" bootstrapSelect required class="selectpicker form-control is-required-status" title="Select a Patient"
+                        data-live-search="true" [(ngModel)]="appointmentEdit.patientId">
+                    <option *ngFor="let patient of patients" value="{{patient.id}}">{{patient.friendlyName}}</option>
+                </select>
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': patient.valid, 'glyphicon-remove' : !patient.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !patient.valid" class="errorMessage">
+                    {{'appointement.patv' | translate}}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="control-label col-md-3" for="symptoms">{{'appointement.pats' | translate}}</label>
+            <div class="col-md-9" [ngClass]="{'has-success': f.submitted && symptoms.valid, 'has-error' : f.submitted && !symptoms.valid}">
+                <textarea type="text" autofocus id="symptoms" name="symptoms" #symptoms="ngModel" rows="4" required placeholder="Enter a short description of your symptoms" class="form-control" [(ngModel)]="appointmentEdit.symptoms"></textarea>
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ':symptoms.valid, 'glyphicon-remove' : !symptoms.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !symptoms.valid" class="errorMessage">
+                    {{'appointement.sym' | translate}}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3" for="preferredDoctor">{{'appointement.prefdoc' | translate}}</label>
+            <div class="col-md-9">
+                <select id="preferredDoctor" name="preferredDoctor" bootstrapSelect class="selectpicker form-control is-required-status" data-live-search="true" [(ngModel)]="appointmentEdit.preferredProviderId">
+                    <option data-subtext="(Recommended)" value="">-Any-</option>
+                    <option *ngFor="let provider of providers" value="{{provider.id}}">{{provider.friendlyName}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label class="control-label col-md-3" for="preferredDate">{{'appointement.prefdate' | translate}}</label>
+            <div class="col-md-9">
+                <div class="input-group date">
+                    <input type="text" id="preferredDate" name="preferredDate" #preferredDate="ngModel" required class="form-control is-required-status" placeholder="Select your preferred date for the appointment"
+                           bootstrapDatepicker #datePicker="bootstrap-datepicker" [options]="datepickerOptions" [(ngModel)]="preferredDateOnly" />
+                    <span class="input-group-addon" (click)="datePicker.show()"><i class="fa fa-calendar"></i></span>
+                </div>
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ':preferredDate.valid, 'glyphicon-remove' : !preferredDate.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !preferredDate.valid" class="errorMessage">
+                    {{'appointement.prefdateval' | translate}}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3" for="preferredTime"></label>
+            <div class="col-md-9">
+                <timepicker id="preferredTime" name="preferredTime" [(ngModel)]="preferredTimeOnly"></timepicker>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3" for="isCritical"></label>
+            <div class="col-md-9">
+                <div class="checkbox">
+                    <label>
+                        <input name="isCritical" type="checkbox" [(ngModel)]="appointmentEdit.isCritical">
+                        {{'appointement.cr' | translate}}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <hr class="last-separator-hr" />
+            </div>
+        </div>
+
+        <div class="form-group actionBtn-form-group">
+            <div class="col-md-5">
+                <a *ngIf="appointmentEdit.isActive" class="btn btn-link" href="javascript:;" (click)="cancelAppointment()">{{'appointement.cancelopt' | translate}}</a>
+            </div>
+            <div class="col-md-7">
+                <div class="pull-right">
+                    <button type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i>{{'appointement.Cancel' | translate}}</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="isSaving">
+                        <i *ngIf="!isSaving"></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? 'Booking...' : 'Request'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>
+
+<div *ngIf="editorState != appointmentEditorState.Editor">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row alert status-display" [class.alert-success]="editorState == appointmentEditorState.Confirmed" [class.alert-warning]="editorState == appointmentEditorState.Cancelled"
+                 [class.alert-info]="editorState == appointmentEditorState.Confirm" [class.alert-danger]="editorState == appointmentEditorState.rejected">
+                <div class="col-md-1">
+                    <h1 *ngIf="editorState == appointmentEditorState.Confirmed"><i class="fa fa-check-circle"></i></h1>
+                    <h1 *ngIf="editorState == appointmentEditorState.Cancelled"><i class="fa fa-exclamation-triangle"></i></h1>
+                    <h1 *ngIf="editorState == appointmentEditorState.Confirm"><i class="fa fa-info-circle"></i></h1>
+                    <h1 *ngIf="editorState == appointmentEditorState.rejected"><i class="fa fa-exclamation-circle"></i></h1>
+                </div>
+                <div class="col-md-11">
+
+                    <div *ngIf="editorState == appointmentEditorState.Confirmed">
+                        <h4>{{appointmentEdit.narration}} <strong class="text-nowrap"><u>{{'appointement.booksuccess' | translate}}</u></strong></h4>
+                    </div>
+
+
+                    <div *ngIf="editorState == appointmentEditorState.Cancelled">
+                        <h4>{{appointmentEdit.narration}} <strong class="text-nowrap"><u>{{'appointement.canceloptm' | translate}}</u></strong></h4>
+                    </div>
+
+
+                    <div *ngIf="editorState == appointmentEditorState.Confirm">
+                        <h4>{{appointmentEdit.narration}} <strong class="text-nowrap"><u>{{'appointement.optconfirm' | translate}}</u></strong></h4>
+                        <strong>{{'appointement.slotv' | translate}}</strong>
+                    </div>
+
+
+                    <div *ngIf="editorState == appointmentEditorState.rejected">
+                        <h4>{{appointmentEdit.narration}} <strong class="text-nowrap"><u>{{'appointement.rejected' | translate}}</u></strong></h4>
+                        <strong>{{'appointement.slot' | translate}}</strong>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <hr class="last-separator-hr" />
+        </div>
+    </div>
+
+    <div class="form-group actionBtn-form-group">
+        <div class="col-md-5">
+            <a *ngIf="appointmentEdit.isActive" class="btn btn-link" href="javascript:;" (click)="cancelAppointment()">{{'appointement.cancelopt' | translate}}</a>
+        </div>
+        <div class="col-md-7">
+            <div class="pull-right">
+                <button *ngIf="editorState != appointmentEditorState.Confirmed && editorState != appointmentEditorState.Cancelled" type="button" (click)="cancel()" class="btn btn-danger"><i class='fa fa-times'></i>{{'appointement.Cancel' | translate}}</button>
+                <button *ngIf="editorState != appointmentEditorState.Confirmed && editorState != appointmentEditorState.Cancelled" type="button" (click)="editorState = appointmentEditorState.Editor" class="btn btn-primary"><i class='fa fa-chevron-left'></i>{{'appointement.try' | translate}}</button>
+                <button *ngIf="editorState == appointmentEditorState.Confirm" type="button" (click)="confirm()" class="btn btn-default"><i class='fa fa-save'></i>{{'appointement.Confirm' | translate}}</button>
+                <button *ngIf="editorState == appointmentEditorState.Confirmed || editorState == appointmentEditorState.Cancelled" type="button" (click)="close()" class="btn btn-default">{{'appointement.Close' | translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

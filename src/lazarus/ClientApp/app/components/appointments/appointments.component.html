@@ -1,0 +1,43 @@
+<div class="container">
+    <header class="pageHeader">
+        <h3><i class="fa fa-calendar fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Appointments' | translate}}</h3>
+    </header>
+
+    <div *ngIf="!canAcceptAppointments" [@fadeInOut]>
+        <appointments-management></appointments-management>
+    </div>
+
+
+
+    <div *ngIf="canAcceptAppointments" [@fadeInOut] class="row">
+        <div class="col-sm-2 side-menu">
+            <ul bootstrapTab #tab="bootstrap-tab" class="nav nav-tabs tabs-left" (showBSTab)="onShowTab($event)">
+                <li class="active">
+                    <a id="appointmentsTab" [routerLink]="[]" fragment="appointments" href="#appointments" data-toggle="tab"><i class="fa fa-calendar-check-o fa-fw" aria-hidden="true"></i>{{'appointement.Appointments' | translate}}</a>
+                </li>
+                <li>
+                    <a id="availabilityTab" [routerLink]="[]" fragment="availability" href="#availability" data-toggle="tab"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>{{'appointement.Availability' | translate}} </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-10">
+            <div class="tab-content">
+                <div class="tab-pane active" id="appointments">
+                  <h4>{{'appointement.MyAppointments' | translate}}</h4>
+                    <hr class="separator-hr" />
+                    <div [@fadeInOut] *ngIf="isAppointmentsActived" class="content-container">
+                        <appointments-management [heightOffset]="280"></appointments-management>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="availability">
+                    <h4>{{'appointement.MyAvailability' | translate}}</h4>
+                    <hr class="separator-hr" />
+                    <div [@fadeInOut] *ngIf="isAvailabilityActived" class="content-container">
+                        <availability-management></availability-management>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

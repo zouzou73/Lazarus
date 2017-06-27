@@ -1,0 +1,39 @@
+﻿
+.last-separator-hr {
+    margin: 0 0 10px 0;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.actionBtn-form-group {
+    margin-bottom: 0;
+}
+
+a.disabled {
+    color: gray;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.status-display {
+    margin: 0 15px;
+}
+
+.dateRow {
+    height: 10rem;
+}
+
+.dateColumn {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+    .dateColumn.caption {
+        padding-bottom: 5px;
+    }
+
+.interval-hint {
+    margin-left: 13px;
+}

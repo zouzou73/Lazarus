@@ -1,0 +1,18 @@
+﻿
+.edit-separator-hr {
+    margin: 10px 5px;
+    border-top-style: dashed;
+}
+
+.edit-last-separator-hr {
+    margin-top: 15px;
+}
+
+.form-group {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+input.form-control {
+    border-left-width: 5px;
+}
