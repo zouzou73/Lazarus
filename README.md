@@ -1,6 +1,4 @@
 # **lazarus** - Out Patient Department System
-[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/emonney/QuickApp/blob/master/LICENSE)
-
 Out Patient Department System built with ASP.NET Core and Angular2
 
 ## This application consists of:
