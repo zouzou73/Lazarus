@@ -14,6 +14,7 @@ An  **Angular4 / ASP.NET Core** (cross-platform ) **project** with an end-to-end
 * Internationalization.
 ## Authors
 ![Image of Yaktocat](https://avatars3.githubusercontent.com/u/12655596?v=4&s=400)
+![Image of Yaktocat](https://avatars1.githubusercontent.com/u/7149172?v=4&s=460)
 
 ## You get the benefits of:
 
