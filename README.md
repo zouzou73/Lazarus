@@ -1,11 +1,10 @@
 # **lazarus** - Out Patient Department System
-Out Patient Department System built with ASP.NET Core and Angular2
-# **QuickApp** - ASPNET Core / Angular4 startup project template
+Out Patient Department System built with ASP.NET Core and Angular4
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/emonney/QuickApp/blob/master/LICENSE)
 
-A  **Angular4 / ASP.NET Core** (cross-platform ) **project** with an end-to-end user and role management implementation based on  **QuickApp** template (https://marketplace.visualstudio.com/items?itemName=adentum.QuickApp-ASPNETCoreAngularXProjectTemplate) .
+An  **Angular4 / ASP.NET Core** (cross-platform ) **project** with an end-to-end user and role management implementation based on  **QuickApp** template (https://marketplace.visualstudio.com/items?itemName=adentum.QuickApp-ASPNETCoreAngularXProjectTemplate) .
 
-[![Lazarus Demo](https://www.youtube.com/watch?v=oqyyGPc0adk)
+[![Lazarus Demo](https://www.youtube.com/watch?v=oqyyGPc0adk)]
 
 ## This application consists on:
 
