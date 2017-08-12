@@ -12,9 +12,7 @@ An  **Angular4 / ASP.NET Core** (cross-platform ) **project** with an end-to-end
 * User management and role based authorization. 
 * Patient , doctor, department , consultation management. 
 * Internationalization.
-## Authors
-![alt text](https://avatars3.githubusercontent.com/u/12655596?v=4&s=400 width=100)
-![alt text](https://avatars1.githubusercontent.com/u/7149172?v=4&s=460)
+
 
 ## You get the benefits of:
 
